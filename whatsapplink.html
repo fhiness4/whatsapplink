@@ -1,0 +1,496 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body{
+            max-height: 100vh;
+            background-color: aliceblue;
+
+        }
+        .top{
+            height: 30%;
+            position: sticky;
+            top: -150px;
+            background-color: rgba(0, 128, 105, 0.973);
+            color: aliceblue;
+        }
+        .top h1{
+            position: sticky;
+            top: 22%;
+            padding: 20px;
+        }
+        .container{
+            height: auto;
+            display: grid;
+            justify-content: center;
+            text-align: center;
+            gap: 30px;
+        }
+        .con{
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        input{
+            border-bottom: 3px solid rgb(9, 241, 9);
+            font-size: 20px;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            height: 50px;
+            color: black;
+            background-color: transparent;
+            text-align: center;
+            outline: none;
+        }
+        .buttons{
+            gap: 20px;
+            display: flex;
+        }
+        .buttons button:nth-child(1){
+            background: linear-gradient(to right, blue ,rgba(83, 10, 240, 0.519));
+        }
+        .buttons button:nth-child(2){
+            background: linear-gradient(to right, rgb(31, 209, 31),lightgreen);
+        }
+        
+        .buttons button{
+            color: rgba(255, 255, 255, 0.911);
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .recent{
+            background-color: whitesmoke;
+            width: 100%;
+            height: 60px;
+        }
+        a{
+            text-decoration: none;
+            color: darkblue;
+        }
+        .lightbox{
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(34, 72, 105, 0.61);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .lightbox input{
+            color: aliceblue;
+        }
+        .lightbox:target{
+            visibility: visible;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+        #linkcon{
+            visibility: hidden;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(34, 112, 181, 0.264);
+        }
+        .links h1{
+            text-align: center;
+        }
+        .links{
+            background-color: aliceblue;
+            border-radius: 8px;
+            box-shadow: 2px 3px 9px black;
+            height: 70%;
+            width: 80%;
+            overflow-x: auto;
+            display: grid;
+            text-align: start;
+            padding: 30px;
+        }
+        .links input{
+            color: blue;
+        }
+        #linkcon:target{
+           visibility: visible;
+        }
+        .resentcon{
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .resent{
+            text-align: center;
+            position: absolute;
+            height: 300px;
+            width: 80%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 2px 3px 9px black;
+            overflow-y: auto;
+            
+        }
+        
+        .resentcon:target{
+              visibility: visible;
+        }
+        span{
+            cursor: pointer;
+        }
+        #contactcon{
+            position: absolute;
+            display: grid;
+            top: 0;
+            visibility: hidden;
+            height: 100%;
+            width: 100%;
+            background-color: aliceblue;
+        }
+        #contactcon:target{
+            visibility: visible;
+        }
+        .nav{
+            position: sticky;
+            left: 90%;
+            top: 23%;
+            color: rgb(64, 246, 231);
+            font-size: 25px;
+            border-radius: 50%;
+
+        }
+        nav{
+            visibility: hidden;
+            right: 0;
+            top: 0;
+            position: absolute;
+            background-color: aliceblue;
+            height: 150px;
+            display: grid;
+            place-items: center;
+            color: black;
+            width: 150px;
+        }
+        nav:target{
+            visibility: visible;
+        }
+        #donate{
+            background: linear-gradient(to top, white,antiquewhite,white );
+            height: 90%;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+        .donate{
+            background-color: aliceblue;
+            box-shadow: 2px 4px 8px black;
+            border-radius: 10px;
+            transform: translateY(-120px);
+            width: 300px;
+            height: 200px;
+            display: grid;
+        }
+        .but{
+            box-shadow: 2px 4px 9px black;
+        }
+        .back{
+            position: absolute;
+            left: 2%;
+            top: 10px;
+            
+        }
+        .back button{
+            background-color: rgb(76, 235, 174);
+        }
+        .savecon{
+            width: 100%;
+            display: grid;
+            place-items: center;
+            height: 500px;
+            background-color: antiquewhite;
+        }
+        .contactsave{
+            height: 400px;
+            width: 400px;
+            background-color: white;
+            box-shadow: 2px 4px 8px black;
+            overflow-y: auto;
+            border-radius: 9px;
+            text-align: center;
+           
+            
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="top">
+    <i>created by @finesse</i>
+      <nav id="nav">
+        <i>CONTACT US</i>
+        <a href="https://wa.me/23409071221697">📞Whatsapp</a>
+        <a href="https://tiktok.com/@fhiness.dev">🐦Tiktok</a>
+        <a href="#">📙Facebook</a>
+        <a href="#donate">💘Donate</a>
+        <a href="#" style="font-size: 20px; width: 100%; text-align: center;">✖</a>
+      </nav>
+
+      <h1>Whatsapp_links</h1>
+      <a href="#nav" class="nav">☎</a>
+   </div> 
+   <section class="container" id="con">
+      <div class="con">
+        <span>🟩 &nbsp; 🟩</span><h2>Nigeria</h2>
+      </div>
+
+      <h1>Enter phone number</h1>
+      <a href="#contactcon">or select from vcontact -_-</a>
+      <div id="contactcon">
+           <div class="contact">
+            <a href="#" class="back"><button> ← Back</button></a>
+            <h1>VIRTUAL NUMBER 🎗</h1>
+            <input type="text" id="name" placeholder="Contact_Name">
+            <input type="tel"  id="tel" placeholder="Phone_Number">
+            <button onclick="save()">ADD</button>
+         <div class="savecon">
+                <div class="contactsave" id="save">
+                    <h1>Saved contacts</h1>
+                </div>
+            
+          </div>
+
+            <hr>
+           </div>
+      </div>
+      <input type="number" placeholder="Phone number" id="num">
+      <a href="#lightbox">Add message🖊</a>
+      <div class="lightbox" id="lightbox">
+        <input type="text" placeholder="add text" id="text">
+        <a href="#"><button>CLOSE</button></a>
+      </div>
+      
+      <div class="buttons">
+        <a href="#linkcon">
+            <button onclick="generate()">GENERATE LINK</button>
+        </a>
+        <button onclick="direct()">DIRECT MESSAGE</button>
+      </div>
+       <div id="linkcon"> 
+       
+         <div class="links">
+          <h1>LINK GENERATED</h1>
+            <p>HERE IS YOUR WHATSAPP LINK</p>
+              <input type="text" id="normal" disabled>
+              <span onclick="copy()">copy 🖍</span>
+              <span id="cop" style="display: none;">copied ⩗</span>
+
+              <p>HERE IS YOUR UNIQUE WHATSAPP LINK</p>
+              <input type='text' id="unique" disabled>
+              <span onclick="copy1()">copy 🖍</span>
+              <span id="cop1" style="display: none;">copied ⩗</span>
+              <a href="#"><button>☢ Back</button></a>
+         </div>
+        </div> 
+               
+
+      <a  href="#recent" onclick="butrece()"><button  class="recent">^
+        <br>RECENT NUMBERS
+      </button></a>
+      
+      <div class="resentcon" id="recent">
+      <div class="resent" >RECENTS
+         <a href="#" onclick="abort()">✖</a>
+        <ol id="rec"></ol>
+      </div>
+    </div>
+   
+   </section>
+   <section id="donate">
+    <a href="#donatecon">
+        <button class="but">DONATE TO DEVELOPERS <br>↓</button></a>
+    <div id="donatecon">
+        <div class="donate">
+            <h1>ACCOUNT no.</h1>
+            <p>BANK: Opay ✔</p>
+            <p>NAME: Odebunmi Lukman Adekunle ✔</p>
+            <label for="ACCOUNT"> ACCOUNT NUMBER:
+                <input type="text" id="account" value="9071221697" disabled>
+                <button onclick="copy2()">copy 🖊</button>
+                <span id="co" style="display: none;">copied ✔</span>
+            </label>
+        </div>
+    </div>
+   </section>
+
+     <script src="scri.js"></script>
+   <script>
+
+
+
+
+
+
+        var num = document.getElementById("num").value;
+        
+        var normal = document.getElementById("normal");
+        var unique = document.getElementById("unique");
+        function direct(params) {
+           var    num = document.getElementById("num").value;
+           let text = document.getElementById("text").value;
+            var URL = "https://wa.me/234";
+          var message = text;
+          var whatsappUrl = 'https://wa.me/234'+num+'?text=' + encodeURIComponent(message);
+           window.location.href = whatsappUrl;
+        };
+        var rece = document.getElementById("recent");
+        var recent = document.createElement("input");
+        let rec = document.getElementById('rec');
+        recent.value += localStorage.getItem('input');
+        rec.appendChild(recent);
+        
+        recent.addEventListener('click', function(){
+        var num = document.getElementById("num");
+        
+        recent.disabled = true;
+        recent.style.cursor = "pointer";
+       num.value = recent.value;
+      
+         rece.style.visibility = "hidden";
+
+      
+       
+
+    });
+    
+    var rece = document.getElementById("recent");
+        function butrece(params) {
+            rece.style.visibility = "visible";
+        };
+        function abort(params) {
+            rece.style.visibility = "hidden";
+        };
+        
+
+        
+    
+    function generate(params) {
+        var recent = document.createElement("input");
+        var num = document.getElementById("num").value;
+        recent.disabled = true;
+        recent.style.cursor = "pointer";
+        let text = document.getElementById("text").value;
+        let rec = document.getElementById('rec');
+         localStorage.setItem('input', num);
+         recent.value += localStorage.getItem('input');
+        rec.appendChild(recent);
+
+         var URL = "https://wa.me/234";
+          var message = text;
+          var whatsappUrl = 'https://wa.me/234'+num+'?text=' + encodeURIComponent(message);
+         // window.location.href = whatsappUrl;
+         if (text == "") {
+            normal.value = URL+ num;
+            unique.value = "YOU DIDN`T CREATE A UNIQUE LINK";
+         }
+         else {
+            unique.value = whatsappUrl;
+            normal.value = URL+ num;
+         
+         }
+         
+
+         
+    };
+    function copy() {
+        document.getElementById("cop").style.display = "block"; 
+        setInterval(() => {
+            document.getElementById("cop").style.display = "none";  
+        }, 3000);
+ 
+        navigator.clipboard.writeText(normal.value).then(()=>{
+            console.log("copied");
+        }
+    ).catch(()=>{
+        console.error('error copying');
+    });
+    
+        
+    };
+
+    function copy1() {
+        document.getElementById("cop1").style.display = "block";
+        setInterval(() => {
+            document.getElementById("cop1").style.display = "none";
+        }, 3000);
+        
+        navigator.clipboard.writeText(unique.value).then(()=>{
+            console.log("copied");
+        }
+    ).catch(()=>{
+        console.error('error copying');
+    })
+
+};
+
+function copy2() {
+    var account = document.getElementById("account");
+        document.getElementById("co").style.display = "block";
+        setInterval(() => {
+            document.getElementById("co").style.display = "none";
+        }, 3000);
+        
+        navigator.clipboard.writeText(account.value).then(()=>{
+            console.log("copied");
+        }
+    ).catch(()=>{
+        console.error('error copying');
+    })
+
+};
+let name = document.getElementById("name");
+    let tel = document.getElementById("tel");
+    var saved = document.getElementById("save");
+    var newname = document.createElement("h2");
+    var newtel = document.createElement("input");  
+     saved.appendChild(newname);
+  saved.appendChild(newtel) ;
+  newname.innerHTML += localStorage.getItem('name');
+  newtel.value = localStorage.getItem('tel');
+    
+function save() {
+    var store = [];
+    localStorage.setItem("name",name.value);
+    localStorage.setItem("tel",tel.value);
+    var newname = document.createElement("h2");
+    var newtel = document.createElement("input");  
+     saved.appendChild(newname);
+  saved.appendChild(newtel) ;
+       newtel.value = tel.value
+      newname.innerHTML = name.value; 
+    }
+
+   </script>
+</body>
+</html>
+
